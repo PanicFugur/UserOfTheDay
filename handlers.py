@@ -68,13 +68,9 @@ def run(update, context):
                 context.bot.send_message(chatId,
                                          'Пользователей не зарегистрировано')
         else:
-            context.bot.send_message(chatId,
-                                     'Сегодня уже крутили барабан,\
-                                      подождите пожалуйста')
+            context.bot.send_message(chatId, 'Сегодня уже крутили барабан!')
     else:
-        context.bot.send_message(chatId,
-                                 'Вы не зарегистрированы,\
-                                  пройдите на стойку регистрации')
+        context.bot.send_message(chatId, 'Вы не зарегистрированы /run')
 
 
 def stat(update, context):
