@@ -4,7 +4,7 @@ import datetime
 import os
 import config
 
-# TODO this is a bad hack, fix it later with enviroment variables or something
+# TODO this is a bad hack, fix it later
 db = SqliteDatabase(config.DBPATH)
 
 
@@ -95,6 +95,9 @@ class DB:
         else:
             users = User.select().where(User.tChatId == tChatId,
                                         User.active == True)
+# TODO flake8 keeps moaning about using IS in bool comparisons
+# but that breaks the query and returns garbage
+# research how to fix that
         return users
 
     def get_active_user(self, tUserId, tChatId):
@@ -102,6 +105,9 @@ class DB:
             user = User.get(User.tUserId == tUserId,
                             User.tChatId == tChatId,
                             User.active == True)
+# TODO flake8 keeps moaning about using IS in bool comparisons
+# but that breaks the query and returns garbage
+# research how to fix that
             return user
         except(DoesNotExist):
             return None

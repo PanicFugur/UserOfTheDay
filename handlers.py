@@ -54,14 +54,14 @@ def run(update, context):
                 database.add_log(beedor.id, chatId, True)
                 context.bot.send_message(
                     update.effective_chat.id,
-                    fr'🅱️идор дня: ' + helpers.mention(beedor.tUserName,
-                                                       beedor.tUserId),
+                    '🅱️идор дня: ' + helpers.mention(beedor.tUserName,
+                                                     beedor.tUserId),
                     parse_mode='MarkdownV2'
                     )
                 context.bot.send_message(
                     update.effective_chat.id,
-                    fr'Красавчик дня: ' + helpers.mention(notbeedor.tUserName,
-                                                          notbeedor.tUserId),
+                    'Красавчик дня: ' + helpers.mention(notbeedor.tUserName,
+                                                        notbeedor.tUserId),
                     parse_mode='MarkdownV2'
                     )
             else:
@@ -70,7 +70,7 @@ def run(update, context):
         else:
             context.bot.send_message(chatId, 'Сегодня уже крутили барабан!')
     else:
-        context.bot.send_message(chatId, 'Вы не зарегистрированы /run')
+        context.bot.send_message(chatId, 'Вы не зарегистрированы /reg')
 
 
 def stat(update, context):
