@@ -28,6 +28,12 @@ class Logs(BaseModel):
     timestamp = DateTimeField(default=datetime.datetime.now)
 
 
+class Resource(BaseModel):
+    tResId = IntegerField()
+    resType = TextField()
+    beeDor = BooleanField() 
+
+
 # Database class definition, for handling all database related nonsense
 class DB:
 
@@ -138,3 +144,11 @@ class DB:
                   .group_by(User)
                   .order_by(fn.Count(Logs.id).desc()))
         return counts
+
+    def add_res(self, tResId, resType, beedor):
+        newRes = Resource(tResId=tResId, resType=resType, beedor=beedor)
+        newRes.save()
+
+    def get_ress(self, beedor):
+        resList = Resource.select().where(beedor=beedor)
+        return resList
