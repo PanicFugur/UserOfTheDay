@@ -4,7 +4,7 @@ import database
 
 def hasItBeenADay(dateToCheck):
     now = datetime.now()
-    if now < (dateToCheck + timedelta(hours=24)):
+    if now.day == dateToCheck.day:
         return False
     else:
         return True
