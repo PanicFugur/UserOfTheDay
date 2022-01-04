@@ -35,7 +35,7 @@ def run(update, context):
     database = DB(config.DBPATH)
     chatId = update.effective_chat.id
     # Check if user's registered
-    if helpers.isUserRegistered(update.effective_user.id, chatId):
+    if helpers.isUserRegistered(update.effective_user.id, chatId):  # Invert this garbage
         last_log = database.get_last_log(chatId)
         # Pull the last log to check if 24 hours has passed
         # if no last log found just get a date 25 hours before
@@ -49,6 +49,7 @@ def run(update, context):
             if len(userlist) > 0:  # check that users exist
                 notbeedor = userlist[random.randint(0, len(userlist) - 1)]
                 beedor = userlist[random.randint(0, len(userlist) - 1)]
+                #TODO add random preselect messages with pauses for effect
                 # save logs of the selection
                 database.add_log(notbeedor.id, chatId, False)
                 database.add_log(beedor.id, chatId, True)
@@ -81,6 +82,7 @@ def stat(update, context):
     # a little slow but it effectively solves the problem
     # of having number of records on each side unequal
     # TODO find a better solution for this
+    # 2) is it slow though wtf was i thinking
     beedors_str = '🅱️идоры:'
     for item in beedors:
         beedors_str = beedors_str + helpers.getStatString(item)

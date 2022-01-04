@@ -131,9 +131,10 @@ class DB:
         # but it needs to be that way
         # so we don't have to do filtering
         # on the app side and let sqlite + peewee do their thing
+        currentYear = datetime.date.today().year
         counts = (User
                   .select(User, fn.Count(Logs.id).alias('count'))
-                  .where(User.tChatId == ChatId, Logs.beeDor == beeDor)
+                  .where(User.tChatId == ChatId, Logs.beeDor == beeDor, Logs.timestamp.year == currentYear)
                   .join(Logs, JOIN.LEFT_OUTER)
                   .group_by(User)
                   .order_by(fn.Count(Logs.id).desc()))
